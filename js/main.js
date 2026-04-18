@@ -149,8 +149,6 @@ if (btnAdicionar) {
     const vagas = parseInt(document.getElementById('vagas').value);
     const descricao = document.getElementById('descricao').value;
 
-    if (!validarFormulario()) return;
-
     const novoEvento = {
         id: eventos.length + 1,
         titulo,
@@ -190,60 +188,6 @@ function limparFormulario() {
 }
 
 
-function validarFormulario() {
-    const titulo = document.getElementById('titulo').value;
-    const categoria = document.getElementById('categoria').value;
-    const data = document.getElementById('data').value;
-    const local = document.getElementById('local').value;
-    const vagas = document.getElementById('vagas').value;
-    const descricao = document.getElementById('descricao').value;
-
-
-    if (!titulo || !categoria || !data || !local || !vagas || !descricao) {
-        const p = document.getElementById('mensagem');  
-        if (p) {
-            p.textContent = 'Por favor, preencha todos os campos.';
-            p.style.color = 'red';
-        }}
-        return false
- 
-    if (isNaN(vagas) || vagas <= 0) {
-        const p = document.getElementById('mensagem');
-        if (p) {
-            p.textContent = 'O número de vagas deve ser um valor positivo.';
-            p.style.color = 'red';
-        }
-        return false
-    }
-
-    if (new Date(data) < new Date()) {
-        const p = document.getElementById('mensagem');
-        if (p) {
-            p.textContent = 'A data do evento deve ser uma data futura.';
-            p.style.color = 'red';
-        }
-        return false
-    }
-
-    if (!['palestra', 'oficina', 'minicurso', 'seminário', 'workshop'].includes(categoria.toLowerCase())) {
-        const p = document.getElementById('mensagem');  
-        if (p) {
-            p.textContent = 'A categoria deve ser uma das seguintes: palestra, oficina, minicurso, seminário ou workshop.';
-            p.style.color = 'red';
-        }
-        return false
-    }
-
-
-    if (descricao.length < 30 || descricao.length > 100) {
-        const p = document.getElementById('mensagem');
-        if (p) {
-            p.textContent = 'A descrição deve conter entre 30 e 100 caracteres.';
-            p.style.color = 'red';
-        }
-        return false
-    }
-}
 
 
 function exibirListaEventos(){
