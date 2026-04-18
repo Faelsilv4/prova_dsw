@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Acadêmica We</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__titulo">Agenda Acadêmica Web</h1>
+    </header>
+    <main class="main">
+        <section class="section-pesquisa">
+            <div class="input-titulo">
+                <label for="pesquisaPorTitulo">Pesquisa por titulo:</label>
+                <input type="text" id="pesquisaPorTitulo" name="pesquisaPorTitulo" placeholder="Digite o título do evento">
+            </div>
+            <div class="input-categoria">
+                <label for="pesquisaPorCategoria">Pesquisa por categoria:</label>
+                <select name="pesquisaPorCategoria" id="pesquisaPorCategoria">
+                    <option value="">Selecione uma categoria</option>
+                    <option value="palestra">palestra</option>
+                    <option value="minicurso">minicurso</option>
+                    <option value="oficina">oficina</option>
+                    <option value="seminário">seminário</option>
+                    <option value="workshop">workshop</option>
+                </select>
+            </div>
+        </section>
+        
+        <section class="card-usuarios">
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Agenda Acadêmica Web. Todos os direitos reservados.</p>
+        <p>Autores: Kauê Wallace e Rafael da Silva</p>
+    </footer>
+    <script src="./js/main.js"></script>
+</body>
+</html>
