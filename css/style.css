@@ -8,8 +8,23 @@
 .header {
     background-color: #219ebc;
     color: white;
-    padding: 20px;
-    text-align: center;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.header__nav-lista {
+    display: flex;
+    list-style-type: none;
+    column-gap: 20px;
+}
+
+.header__nav-link {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
 }
 
 .section-pesquisa {
@@ -29,11 +44,15 @@
     font-size: 20px;
 }
 
-.input-titulo input, .input-categoria input {
+.input-titulo input, .input-categoria input, .formGroup input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    
+}
 
+.input-descricao {
+    height: 60px;
 }
 
 .card-usuarios {
@@ -59,4 +78,35 @@
     font-size: 18px;
     margin-top: 10px;
     text-align: justify;
+}
+
+
+.formularioEvento {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    align-items: center;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 50%;
+}
+
+.btn-adicionar-evento {
+    padding: 10px 20px;
+    background-color: #219ebc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 300px;
+}
+
+.btn-adicionar-evento:hover {
+    background-color: #023047;
+    cursor: pointer;
 }

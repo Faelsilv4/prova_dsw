@@ -56,25 +56,33 @@ const eventos = [
 ]
 
 
+
+
 const inputTitulo = document.getElementById('pesquisaPorTitulo');
-inputTitulo.addEventListener('input', () => {
-    const tituloPesquisado = inputTitulo.value.toLowerCase();
-    const eventosFiltrados = eventos.filter(evento => evento.titulo.toLowerCase().includes(tituloPesquisado));
-    listarEventos(eventosFiltrados);
-})
+if (inputTitulo) {
+    inputTitulo.addEventListener('input', () => {
+        const tituloPesquisado = inputTitulo.value.toLowerCase();
+        const eventosFiltrados = eventos.filter(evento => evento.titulo.toLowerCase().includes(tituloPesquisado));
+        listarEventos(eventosFiltrados);
+    });
+}
 
 const inputCategoria = document.getElementById('pesquisaPorCategoria');
-inputCategoria.addEventListener('change', () => {
-    const categoriaPesquisada = inputCategoria.value.toLowerCase();
-    const eventosFiltrados = eventos.filter(evento => evento.categoria.toLowerCase().includes(categoriaPesquisada));
-    listarEventos(eventosFiltrados);
-})
+if (inputCategoria) {
+    inputCategoria.addEventListener('change', () => {
+        const categoriaPesquisada = inputCategoria.value.toLowerCase();
+        const eventosFiltrados = eventos.filter(evento => evento.categoria.toLowerCase().includes(categoriaPesquisada));
+        listarEventos(eventosFiltrados);
+    });
+}
 
 listarEventos(eventos)
 
 function listarEventos(eventos) {
     const cardUsuarios = document.querySelector('.card-usuarios');
 
+    if (!cardUsuarios) return
+    
     cardUsuarios.innerHTML = '';
 
     eventos.map((evento) => {
@@ -120,8 +128,153 @@ function listarEventos(eventos) {
         p7.textContent = `Descrição: ${evento.descricao}`;
         cardEventos.appendChild(p7);
     })
+}
 
-    
-    
 
+
+// formulario
+const form = document.getElementById('formularioEvento');
+const btnAdicionar = document.getElementById('btn');
+
+form.style.display = 'none';
+
+if (btnAdicionar) {
+    btnAdicionar.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const titulo = document.getElementById('titulo').value;
+    const categoria = document.getElementById('categoria').value;
+    const data = document.getElementById('data').value;
+    const local = document.getElementById('local').value;
+    const vagas = parseInt(document.getElementById('vagas').value);
+    const descricao = document.getElementById('descricao').value;
+
+    if (!validarFormulario()) return;
+
+    const novoEvento = {
+        id: eventos.length + 1,
+        titulo,
+        categoria,
+        data,
+        local,
+        vagas,
+        descricao
+    };
+
+    console.log(novoEvento)
+    adicionarEvento(novoEvento);
+    console.log(eventos)
+})
+}
+
+
+function adicionarEvento(evento) {
+    eventos.push(evento);
+    listarEventos(eventos);
+    const p = document.getElementById('mensagem');
+    if (p) {
+        p.textContent = 'Evento adicionado com sucesso!';
+        p.style.color = 'green';
+    }
+    limparFormulario();
+    exibirListaEventos()
+}
+
+function limparFormulario() {
+    document.getElementById('titulo').value = '';
+    document.getElementById('categoria').value = '';
+    document.getElementById('data').value = '';
+    document.getElementById('local').value = '';
+    document.getElementById('vagas').value = '';
+    document.getElementById('descricao').value = '';
+}
+
+
+function validarFormulario() {
+    const titulo = document.getElementById('titulo').value;
+    const categoria = document.getElementById('categoria').value;
+    const data = document.getElementById('data').value;
+    const local = document.getElementById('local').value;
+    const vagas = document.getElementById('vagas').value;
+    const descricao = document.getElementById('descricao').value;
+
+
+    if (!titulo || !categoria || !data || !local || !vagas || !descricao) {
+        const p = document.getElementById('mensagem');  
+        if (p) {
+            p.textContent = 'Por favor, preencha todos os campos.';
+            p.style.color = 'red';
+        }}
+        return false
+ 
+    if (isNaN(vagas) || vagas <= 0) {
+        const p = document.getElementById('mensagem');
+        if (p) {
+            p.textContent = 'O número de vagas deve ser um valor positivo.';
+            p.style.color = 'red';
+        }
+        return false
+    }
+
+    if (new Date(data) < new Date()) {
+        const p = document.getElementById('mensagem');
+        if (p) {
+            p.textContent = 'A data do evento deve ser uma data futura.';
+            p.style.color = 'red';
+        }
+        return false
+    }
+
+    if (!['palestra', 'oficina', 'minicurso', 'seminário', 'workshop'].includes(categoria.toLowerCase())) {
+        const p = document.getElementById('mensagem');  
+        if (p) {
+            p.textContent = 'A categoria deve ser uma das seguintes: palestra, oficina, minicurso, seminário ou workshop.';
+            p.style.color = 'red';
+        }
+        return false
+    }
+
+
+    if (descricao.length < 30 || descricao.length > 100) {
+        const p = document.getElementById('mensagem');
+        if (p) {
+            p.textContent = 'A descrição deve conter entre 30 e 100 caracteres.';
+            p.style.color = 'red';
+        }
+        return false
+    }
+}
+
+
+function exibirListaEventos(){
+    const cardUsuarios = document.querySelector('.card-usuarios');
+    cardUsuarios.style.display = 'grid';
+    const sectionPesquisa = document.querySelector('.section-pesquisa');
+    sectionPesquisa.style.display = 'flex';
+    const formularioEvento = document.getElementById('formularioEvento');
+    formularioEvento.style.display = 'none';
+}
+
+const linkHome = document.getElementById('link-home');
+const formularioEvento = document.getElementById('formularioEvento');
+const linkFormulario = document.getElementById('link-formulario');
+const sectionPesquisa = document.querySelector('.section-pesquisa');
+
+if (linkHome){
+    linkHome.addEventListener('click', (e) => {
+        formularioEvento.style.display = 'none';
+        sectionPesquisa.style.display = 'flex';
+        const cardUsuarios = document.querySelector('.card-usuarios');
+        cardUsuarios.style.display = 'grid';
+         listarEventos(eventos);
+    })
+}
+
+if (linkFormulario){
+    const cardUsuarios = document.querySelector('.card-usuarios');
+    linkFormulario.addEventListener('click', (e) => {
+        cardUsuarios.style.display = 'none';
+        sectionPesquisa.style.display = 'none';
+        formularioEvento.style.display = 'flex';
+    })
 }

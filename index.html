@@ -3,14 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda Acadêmica We</title>
+    <title>Agenda Acadêmica Web</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
+<body class="body">
     <header class="header">
         <h1 class="header__titulo">Agenda Acadêmica Web</h1>
+        <nav class="header__nav">
+            <ul class="header__nav-lista">
+                <li class="header__nav-item"><a href="#" class="header__nav-link" id="link-home">Home</a></li>
+                <li class="header__nav-item"><a href="#" class="header__nav-link" id="link-formulario">Formulário</a></li>
+            </ul>
     </header>
     <main class="main">
+        <section class="forms">
+                <form id="formularioEvento" class="formularioEvento">
+                    <div class="formGroup">
+                        <label for="titulo">Título:</label>
+                        <input type="text" id="titulo" name="titulo" required minlength="8" maxlength="30" placeholder="Digite o título do evento"> 
+                    </div>
+                    <div class="formGroup">
+                        <label for="categoria">Categoria:</label>
+                        <select id="categoria" name="categoria" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="palestra">palestra</option>
+                            <option value="minicurso">minicurso</option>
+                            <option value="oficina">oficina</option>
+                            <option value="seminário">seminário</option>
+                            <option value="workshop">workshop</option>
+                        </select>
+                    </div>
+                    <div class="formGroup">
+                        <label for="data">Data:</label>
+                        <input type="date" id="data" name="data" required>
+                    </div>
+                    <div class="formGroup">
+                        <label for="local">Local:</label>
+                        <input type="text" id="local" name="local" required minlength="8" maxlength="30" placeholder="Digite o local do evento">
+                    </div>
+                    <div class="formGroup">
+                        <label for="vagas">Número de vagas:</label>
+                        <input type="number" id="vagas" name="vagas" required min="1">
+                    </div>
+                    <div class="formGroup">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao" name="descricao" required minlength="30" maxlength="100" class="input-descricao"></textarea>
+                    </div>
+                    <button type="submit" id="btn" class="btn-adicionar-evento">Adicionar Evento</button>
+                    
+                </form>
+        </section>
         <section class="section-pesquisa">
             <div class="input-titulo">
                 <label for="pesquisaPorTitulo">Pesquisa por titulo:</label>
@@ -29,6 +71,7 @@
             </div>
         </section>
         
+        <p id="mensagem" style="text-align: center;"></p>
         <section class="card-usuarios">
         </section>
     </main>
